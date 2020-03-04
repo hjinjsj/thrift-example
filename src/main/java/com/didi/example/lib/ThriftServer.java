@@ -41,9 +41,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @Slf4j
-@ConfigurationProperties(prefix = "thrift")
+@ConfigurationProperties(prefix = "thrift.server")
 public class ThriftServer {
     private int port;
+
+    private int backlog = 0;
+
+    private int clientTimeout = 0;
 
     public void start(){
         log.info("start thrift server at port {}", port);
@@ -100,7 +104,12 @@ public class ThriftServer {
 
     public void nbJsonStart() {
         log.info("non block json start thrift server at port {}", port);
-        try (TNonblockingServerTransport serverSocket = new TNonblockingServerSocket(port)) {
+        TNonblockingServerSocket.NonblockingAbstractServerSocketArgs args =
+            new TNonblockingServerSocket.NonblockingAbstractServerSocketArgs()
+                .port(port)
+                .backlog(backlog)
+                .clientTimeout(clientTimeout);
+        try (TNonblockingServerTransport serverSocket = new TNonblockingServerSocket(args)) {
             TMultiplexedProcessor processor = new TMultiplexedProcessor();
             TThreadedSelectorServer.Args serverParams = new TThreadedSelectorServer.Args(serverSocket);
             serverParams.protocolFactory(new TJSONProtocol.Factory());
