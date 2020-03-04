@@ -9,6 +9,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * @author huangjin
@@ -29,7 +30,9 @@ public class ExampleApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         log.info("start thrift example app.");
-        thriftServer.nbStart();
+//        thriftServer.nbStart();
+        thriftServer.start();
+
     }
 
 }

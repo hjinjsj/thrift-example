@@ -2,7 +2,9 @@ package com.didi.example.service.impl;
 
 import com.didi.example.dto.UserDto;
 import com.didi.example.lib.MyException;
+import com.didi.example.model.User;
 import com.didi.example.service.UserService;
+import com.google.common.collect.Lists;
 import org.apache.thrift.TException;
 
 import java.util.List;
@@ -10,17 +12,29 @@ import java.util.List;
 public class UserServiceImpl implements UserService.Iface {
     @Override
     public UserDto findById(long uid) throws MyException, TException {
-        return null;
+        User user = User.builder()
+            .id(1)
+            .name("hjin")
+            .mobile("86-15201330136")
+            .isDeleted(false)
+            .build();
+        return user.toDto();
     }
 
     @Override
     public List<UserDto> findByIds(List<Long> uids) throws TException {
-        return null;
+        User user = User.builder()
+            .id(1)
+            .name("hjin")
+            .mobile("86-15201330136")
+            .isDeleted(false)
+            .build();
+        return Lists.newArrayList(user.toDto());
     }
 
     @Override
     public long create(UserDto user) throws MyException, TException {
-        return 0;
+        return 2;
     }
 
     @Override

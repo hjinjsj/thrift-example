@@ -24,6 +24,7 @@ public class ThriftServer {
     private int port;
 
     public void start(){
+        log.info("start thrift server at port {}", port);
         try (TServerTransport t = new TServerSocket(port);){
             TMultiplexedProcessor processor = new TMultiplexedProcessor();
             TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(t).processor(processor));
@@ -31,7 +32,6 @@ public class ThriftServer {
                 "UserService",
                 new UserService.Processor<UserService.Iface>(new UserServiceImpl())
             );
-            log.info("start thrift server at port {}", port);
             server.serve();
         } catch (TTransportException e) {
             log.error(e.getMessage());
@@ -39,7 +39,8 @@ public class ThriftServer {
     }
 
     public void nbStart() {
-        try (TNonblockingServerTransport serverSocket = new TNonblockingServerSocket(50005)) {
+        log.info("non block start thrift server at port {}", port);
+        try (TNonblockingServerTransport serverSocket = new TNonblockingServerSocket(port)) {
             TMultiplexedProcessor processor = new TMultiplexedProcessor();
             TThreadedSelectorServer.Args serverParams = new TThreadedSelectorServer.Args(serverSocket);
             serverParams.protocolFactory(new TBinaryProtocol.Factory());
@@ -50,7 +51,6 @@ public class ThriftServer {
                 new UserService.Processor<UserService.Iface>(new UserServiceImpl())
             );
             TServer server = new TThreadedSelectorServer(serverParams);
-            log.info("non block start thrift server at port {}", port);
             server.serve();
         } catch (TTransportException e) {
             log.error(e.getMessage());
