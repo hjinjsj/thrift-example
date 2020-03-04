@@ -1,6 +1,7 @@
 package com.didi.example.service.impl;
 
 import com.didi.example.dto.UserDto;
+import com.didi.example.lib.Err;
 import com.didi.example.lib.MyException;
 import com.didi.example.model.User;
 import com.didi.example.service.UserService;
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService.Iface {
 
     @Override
     public boolean remove(long uid) throws MyException, TException {
-        return false;
+        throw new MyException(Err.ERROR_NOT_FOUND_UID, Err.getErrorMsg(Err.ERROR_NOT_FOUND_UID));
+//        return false;
     }
 }
