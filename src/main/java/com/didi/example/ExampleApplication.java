@@ -32,7 +32,9 @@ public class ExampleApplication implements ApplicationRunner {
         log.info("start thrift example app.");
 //        thriftServer.start();
 //        thriftServer.nbStart();
-        thriftServer.asyncStart();
+//        thriftServer.nbCompactStart();
+        thriftServer.nbJsonStart();
+//        thriftServer.asyncStart();
     }
 
 }

@@ -17,10 +17,12 @@ version 14.0
 [thrift-client-example](https://github.com/hjinjsj/thrift-client-example)
 
 ## 参考wiki：
-官方文档：<http://thrift.apache.org/tutorial/java>
+官方文档：<http://thrift.apache.org/tutorial/java>、<https://people.apache.org/~thejas/thrift-0.9/javadoc/>
 
 基本说明：<https://www.ibm.com/developerworks/cn/java/j-lo-apachethrift/index.html>
 
 多接口服务：<https://blog.csdn.net/hivon/article/details/11681977>
 
-server比较：<https://www.jianshu.com/p/047f9a5385df>、<https://zhuanlan.zhihu.com/p/31110044>
+server比较：<https://www.jianshu.com/p/047f9a5385df>、<https://zhuanlan.zhihu.com/p/26993406>、<https://zhuanlan.zhihu.com/p/31110044>
+
+PDF: [Apache THRIFT: A Much Needed Tutorial](./docs/thrift_BSD_08_2013.8-18.pdf)
