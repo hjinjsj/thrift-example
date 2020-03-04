@@ -13,3 +13,15 @@ version 5.2.1
 
 ## guava
 version 14.0
+
+## client
+[thrift-client-example](https://github.com/hjinjsj/thrift-client-example)
+
+## 参考wiki：
+官方文档：<http://thrift.apache.org/tutorial/java>
+
+基本说明：<https://www.ibm.com/developerworks/cn/java/j-lo-apachethrift/index.html>
+
+多接口服务：<https://blog.csdn.net/hivon/article/details/11681977>
+
+server比较：<https://www.jianshu.com/p/047f9a5385df>、<https://zhuanlan.zhihu.com/p/31110044>
