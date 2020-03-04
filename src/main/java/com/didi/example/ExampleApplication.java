@@ -29,7 +29,7 @@ public class ExampleApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         log.info("start thrift example app.");
-        thriftServer.start();
+        thriftServer.nbStart();
     }
 
 }
