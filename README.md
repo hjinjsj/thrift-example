@@ -11,10 +11,22 @@ thrift -r --gen java UserService.thrift
 version 5.2.1
 
 ## guava
-version 14.0
+version ~~14.0~~ 18.0
+
+sharding-jdbc依赖guava，因此版本需要升级
 
 ## client
 [thrift-client-example](https://github.com/hjinjsj/thrift-client-example)
+
+## mybatis-sprint-boot-starter
+version 1.3.1
+
+特别注意：注入thrift的processor一定要是注解实例化的不能用new，否则回出现mapper注入失败的问题
+
+## sharding-jdbc
+<https://shardingsphere.apache.org/document/current/cn/manual/sharding-jdbc/configuration/config-spring-boot/>
+
+版本不同配置文件不同，对于hikaricp配置db的url字段为jdbc-url，其它的为url，需要特别注意
 
 ## 参考wiki：
 官方文档：<http://thrift.apache.org/tutorial/java>、<https://people.apache.org/~thejas/thrift-0.9/javadoc/>
