@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.didi.example.mapper.UserMapper">
+
+    <resultMap id="baseResultMap" type="com.didi.example.model.User">
+        <result column="user_id" property="userId"/>
+        <result column="name" property="name" />
+        <result column="mobile" property="mobile" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <insert id="create" parameterType="com.didi.example.model.User" statementType="PREPARED">
+        INSERT INTO t_user (
+          user_id, name, mobile
+        )
+        VALUES (
+            #{userId},
+            #{name},
+            #{mobile}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.didi.example.model.User" statementType="PREPARED">
+        UPDATE t_user SET
+        <if test="name!=null || name!=''">
+            name=#{name},
+        </if>
+        <if test="mobile!=null || mobile!=''">
+            mobile=#{mobile},
+        </if>
+        <if test="createTime!=null">
+            create_time=#{createTime},
+        </if>
+        <if test="updateTime!=null">
+            update_time=#{updateTime},
+        </if>
+            1=1
+        WHERE
+            user_id=#{userId}
+    </update>
+
+    <update id="remove">
+        UPDATE t_user
+        SET is_deleted = 0
+        WHERE
+            user_id = #{uid}
+    </update>
+
+    <select id="findById" resultMap="baseResultMap">
+        SELECT * FROM t_user
+        WHERE
+            user_id = #{uid} AND is_deleted = 0
+    </select>
+
+    <select id="findByIds" resultMap="baseResultMap">
+        SELECT u.* FROM t_user u
+        WHERE
+            u.user_id in
+            <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            AND is_deleted = 0
+    </select>
+
+</mapper>

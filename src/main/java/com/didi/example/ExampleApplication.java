@@ -2,19 +2,19 @@ package com.didi.example;
 
 import com.didi.example.lib.ThriftServer;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.Banner;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * @author huangjin
  */
 @SpringBootApplication
+@MapperScan("com.didi.example.mapper")
 @Slf4j
 public class ExampleApplication implements ApplicationRunner {
     @Autowired
