@@ -8,8 +8,12 @@ import com.didi.example.service.UserService;
 import com.google.common.collect.Lists;
 import org.apache.thrift.TException;
 
+import java.util.Date;
 import java.util.List;
 
+/**
+ * @author huangjin
+ */
 public class UserServiceImpl implements UserService.Iface {
     @Override
     public UserDto findById(long uid) throws MyException, TException {
@@ -17,6 +21,8 @@ public class UserServiceImpl implements UserService.Iface {
             .id(1)
             .name("hjin")
             .mobile("86-15201330136")
+            .createTime(new Date())
+            .updateTime(new Date())
             .isDeleted(false)
             .build();
         return user.toDto();
@@ -28,6 +34,8 @@ public class UserServiceImpl implements UserService.Iface {
             .id(1)
             .name("hjin")
             .mobile("86-15201330136")
+            .createTime(new Date())
+            .updateTime(new Date())
             .isDeleted(false)
             .build();
         return Lists.newArrayList(user.toDto());
