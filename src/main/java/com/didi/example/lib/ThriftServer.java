@@ -12,6 +12,7 @@ import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.server.TThreadedSelectorServer;
 import org.apache.thrift.transport.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -49,6 +50,9 @@ public class ThriftServer {
 
     private int clientTimeout = 0;
 
+    @Autowired
+    private UserService.Iface userService;
+
     public void start(){
         log.info("start thrift server at port {}", port);
         try (TServerTransport t = new TServerSocket(port);){
@@ -56,7 +60,7 @@ public class ThriftServer {
             TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(t).processor(processor));
             processor.registerProcessor(
                 "UserService",
-                new UserService.Processor<UserService.Iface>(new UserServiceImpl())
+                new UserService.Processor<UserService.Iface>(userService)
             );
             server.serve();
         } catch (TTransportException e) {
@@ -74,7 +78,7 @@ public class ThriftServer {
             serverParams.processor(processor);
             processor.registerProcessor(
                 "UserService",
-                new UserService.Processor<UserService.Iface>(new UserServiceImpl())
+                new UserService.Processor<UserService.Iface>(userService)
             );
             TServer server = new TThreadedSelectorServer(serverParams);
             server.serve();
@@ -93,7 +97,7 @@ public class ThriftServer {
             serverParams.processor(processor);
             processor.registerProcessor(
                 "UserService",
-                new UserService.Processor<UserService.Iface>(new UserServiceImpl())
+                new UserService.Processor<UserService.Iface>(userService)
             );
             TServer server = new TThreadedSelectorServer(serverParams);
             server.serve();
@@ -117,7 +121,7 @@ public class ThriftServer {
             serverParams.processor(processor);
             processor.registerProcessor(
                 "UserService",
-                new UserService.Processor<UserService.Iface>(new UserServiceImpl())
+                new UserService.Processor<UserService.Iface>(userService)
             );
             TServer server = new TThreadedSelectorServer(serverParams);
             server.serve();
@@ -132,7 +136,7 @@ public class ThriftServer {
             TThreadedSelectorServer.Args serverParams = new TThreadedSelectorServer.Args(serverSocket);
             serverParams.protocolFactory(new TBinaryProtocol.Factory());
             serverParams.transportFactory(new TFramedTransport.Factory());
-            serverParams.processor(new UserService.Processor<UserService.Iface>(new UserServiceImpl()));
+            serverParams.processor(new UserService.Processor<UserService.Iface>(userService));
             TServer server = new TThreadedSelectorServer(serverParams);
             server.serve();
         } catch (TTransportException e) {

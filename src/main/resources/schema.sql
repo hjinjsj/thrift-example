@@ -10,7 +10,7 @@ CREATE TABLE `t_user` (
   `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '用户手机号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '是否删除',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除',
   PRIMARY KEY uid(`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -26,6 +26,6 @@ CREATE TABLE `t_user` (
   `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '用户手机号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `is_deleted` tinyint NOT NULL DEFAULT 1 COMMENT '是否删除',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否删除',
   PRIMARY KEY uid(`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -24,10 +24,10 @@
 
     <update id="update" parameterType="com.didi.example.model.User" statementType="PREPARED">
         UPDATE t_user SET
-        <if test="name!=null || name!=''">
+        <if test="name!=null and name!=''">
             name=#{name},
         </if>
-        <if test="mobile!=null || mobile!=''">
+        <if test="mobile!=null and mobile!=''">
             mobile=#{mobile},
         </if>
         <if test="createTime!=null">
@@ -36,7 +36,7 @@
         <if test="updateTime!=null">
             update_time=#{updateTime},
         </if>
-            1=1
+            user_id=user_id
         WHERE
             user_id=#{userId}
     </update>

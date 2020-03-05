@@ -3,9 +3,8 @@ package com.didi.example.model;
 
 import com.didi.example.dto.UserDto;
 import com.didi.example.lib.DateUtil;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
+
 import java.util.Date;
 
 /**
@@ -14,8 +13,10 @@ import java.util.Date;
 @Builder
 @Data
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
-    long userId;
+    Long userId;
     String name;
     String mobile;
     Date createTime;
@@ -34,15 +35,16 @@ public class User {
 
     public static User fromDto(UserDto dto) {
         User user =  User.builder()
-            .userId(dto.userId)
-            .name(dto.name)
-            .mobile(dto.mobile)
+            .userId(dto.getUserId())
+            .name(dto.getName())
+            .mobile(dto.getMobile())
+            .isDeleted(dto.isIsDeleted())
             .build();
-        if (dto.createTime > 0) {
-            user.setCreateTime(DateUtil.millisecondToDate(dto.createTime));
+        if (dto.getCreateTime() > 0) {
+            user.setCreateTime(DateUtil.millisecondToDate(dto.getCreateTime()));
         }
-        if (dto.updateTime > 0) {
-            user.setUpdateTime(DateUtil.millisecondToDate(dto.updateTime));
+        if (dto.getUpdateTime() > 0) {
+            user.setUpdateTime(DateUtil.millisecondToDate(dto.getUpdateTime()));
         }
         return user;
     }

@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService.Iface {
 
     @Override
     public long create(UserDto user) throws MyException, TException {
-        if (user.userId <= 0) {
+        if (user.getUserId() <= 0) {
             throw new MyException(Err.ERROR_PARAM, Err.getErrorMsg(Err.ERROR_PARAM));
         }
         User u = User.fromDto(user);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService.Iface {
 
     @Override
     public boolean update(UserDto user) throws MyException, TException {
-        if (user.userId <= 0) {
+        if (user.getUserId() <= 0) {
             throw new MyException(Err.ERROR_PARAM, Err.getErrorMsg(Err.ERROR_PARAM));
         }
         int rows = userMapper.update(User.fromDto(user));
