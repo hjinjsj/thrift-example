@@ -21,7 +21,7 @@ sharding-jdbc依赖guava，因此版本需要升级
 ## mybatis-sprint-boot-starter
 version 1.3.1
 
-特别注意：注入thrift的processor一定要是注解实例化的不能用new，否则回出现mapper注入失败的问题
+特别注意：注入thrift的processor的服务一定要是注解实例化的不能用new，否则会出现mapper注入失败的问题
 
 ## sharding-jdbc
 <https://shardingsphere.apache.org/document/current/cn/manual/sharding-jdbc/configuration/config-spring-boot/>
