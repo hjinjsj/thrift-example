@@ -28,6 +28,45 @@ version 1.3.1
 
 版本不同配置文件不同，对于hikaricp配置db的url字段为jdbc-url，其它的为url，需要特别注意
 
+## jedis
+version 3.2.0
+
+redis docker容器部署
+
+```shell script
+# pull image
+docker pull redis
+
+# first run
+docker run --name redis -d -p 6379:6379 redis
+
+# stop container
+docker stop redis
+
+# after start container
+docker start redis
+```
+
+## rabbitmq
+
+version 
+
+```shell script
+# pull image
+docker pull rabbitmq:3.7-management
+
+# first run
+docker run --name rabbitmq -d -p 5672:5672 -p 15672:15672 rabbitmq:3.7-management
+
+# stop container
+docker stop rabbitmq
+
+# after start container
+docker start rabbitmq
+```
+
+
+
 ## 参考wiki：
 官方文档：<http://thrift.apache.org/tutorial/java>、<https://people.apache.org/~thejas/thrift-0.9/javadoc/>
 

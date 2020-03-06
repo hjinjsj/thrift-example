@@ -28,6 +28,12 @@ dependencies {
 
 	compile("io.shardingsphere:sharding-jdbc-spring-boot-starter:3.1.0")
 
+	compile("org.springframework.boot:spring-boot-starter-data-redis")
+
+	compile("org.springframework.boot:spring-boot-starter-amqp")
+
+	compile("org.codehaus.jackson:jackson-mapper-lgpl:1.7.4")
+
 //	在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：
 //	compile("org.projectlombok:lombok:1.18.2")或者compileOnly("org.projectlombok:lombok:1.18.2")
 //	在gradle4.7版本以后甚至现在gradle5.0了里面这种方式会产生警告,在gradle5.0里面会直接报编译错误。

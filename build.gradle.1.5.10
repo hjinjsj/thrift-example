@@ -23,9 +23,10 @@ dependencies {
 	compile("mysql:mysql-connector-java:8.0.11")
 
 	compile("org.apache.thrift:libthrift:0.9.3")
-	compile("com.google.guava:guava:14.0")
 
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1")
+
+	compile("io.shardingsphere:sharding-jdbc-spring-boot-starter:3.1.0")
 
 //	在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：
 //	compile("org.projectlombok:lombok:1.18.2")或者compileOnly("org.projectlombok:lombok:1.18.2")

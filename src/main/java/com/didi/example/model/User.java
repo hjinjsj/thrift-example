@@ -4,7 +4,6 @@ package com.didi.example.model;
 import com.didi.example.dto.UserDto;
 import com.didi.example.lib.DateUtil;
 import lombok.*;
-
 import java.util.Date;
 
 /**
