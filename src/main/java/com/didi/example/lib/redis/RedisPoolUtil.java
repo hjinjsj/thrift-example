@@ -2,17 +2,27 @@ package com.didi.example.lib.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
+
+import javax.annotation.PostConstruct;
 
 
 /**
  * @author huangjin
  */
+@Component
 @Slf4j
 public class RedisPoolUtil {
-
     @Autowired
-    private static RedisPool redisPool;
+    private RedisPool redisPool;
+
+    private static RedisPool staticRedisPool;
+
+    @PostConstruct
+    public void init() {
+        staticRedisPool = redisPool;
+    }
 
     /**
      * 设置key的有效期
@@ -22,7 +32,7 @@ public class RedisPoolUtil {
      */
     public static Long expire(String key, int seconds){
         Long result = null;
-        try (Jedis jedis = redisPool.getJedis()){
+        try (Jedis jedis = staticRedisPool.getJedis()){
             /**
              * 从自定义RedisPool连接池获取一个实例
              */
@@ -42,7 +52,7 @@ public class RedisPoolUtil {
      */
     public static String setEx(String key, String value, int seconds){
         String result = null;
-        try (Jedis jedis = redisPool.getJedis()){
+        try (Jedis jedis = staticRedisPool.getJedis()){
             result = jedis.setex(key, seconds, value);
         } catch (Exception e) {
             log.error("expire key:{} value:{}, error: {}", key , value, e);
@@ -58,7 +68,7 @@ public class RedisPoolUtil {
      */
     public static String set(String key, String value){
         String result = null;
-        try (Jedis jedis = redisPool.getJedis()){
+        try (Jedis jedis = staticRedisPool.getJedis()){
             result = jedis.set(key,value);
         } catch (Exception e) {
             log.error("expire key:{} value:{} error", key, value, e);
@@ -69,7 +79,7 @@ public class RedisPoolUtil {
     //获取一个key
     public static String get(String key){
         String result = null;
-        try (Jedis jedis = redisPool.getJedis()){
+        try (Jedis jedis = staticRedisPool.getJedis()){
             result = jedis.get(key);
         } catch (Exception e) {
             log.error("expire key:{} value:{} error",key ,e);
@@ -84,7 +94,7 @@ public class RedisPoolUtil {
      */
     public static Long del(String key){
         Long result = null;
-        try (Jedis jedis = redisPool.getJedis()){
+        try (Jedis jedis = staticRedisPool.getJedis()){
             result = jedis.del(key);
         } catch (Exception e) {
             log.error("expire key:{} value:{} error",key ,e);

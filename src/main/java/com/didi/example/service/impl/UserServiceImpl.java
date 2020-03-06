@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService.Iface {
             log.error("mybatis create mapper fail.");
         }
         String key = "user:" + uid;
-        String res = stringRedisTemplate.opsForValue().get(key);
+//        String res = stringRedisTemplate.opsForValue().get(key);
+        String res = RedisPoolUtil.get(key);
         User user = null;
         try {
             if (res != null && res == "") {
@@ -57,7 +58,8 @@ public class UserServiceImpl implements UserService.Iface {
                     return user.toDto();
             }
             user = userMapper.findById(uid);
-            stringRedisTemplate.opsForValue().set(key, objectMapper.writeValueAsString(user), 120);
+//            stringRedisTemplate.opsForValue().set(key, objectMapper.writeValueAsString(user), 120);
+            RedisPoolUtil.setEx(key,  objectMapper.writeValueAsString(user),120);
         } catch (IOException e) {
             log.error(e.getMessage());
             throw new MyException(Err.ERROR_NOT_FOUND_UID, Err.getErrorMsg(Err.ERROR_NOT_FOUND_UID));

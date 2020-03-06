@@ -26,7 +26,7 @@ public class RedisPool {
      * 获取一个Jedis实例
      * @return
      */
-    public  Jedis getJedis() {
+    public Jedis getJedis() {
         return pool.getResource();
     }
 
